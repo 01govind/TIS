@@ -1,0 +1,38 @@
+Create Table Proc_Apprisal(
+
+Empid int PRIMARY KEY,
+workperformance varchar(23),
+communication varchar(23),
+hike varchar(43),
+rating varchar(23)
+
+
+)
+Insert into Proc_Apprisal values (7,'Verygood','Average','4','8')
+Insert into Proc_Apprisal values (10,'good','good','5','10')
+Insert into Proc_Apprisal values (11,'worst','bad','5','5')
+Insert into Proc_Apprisal values (12,'average','Good','9','7')
+Insert into Proc_Apprisal values (111,'Good','Bad','2','5')
+ 
+
+select * from Proc_Apprisal
+
+
+
+
+ Create Procedure Proc_Apprisal_insert
+@vEmpid Int,
+@vworkperformance varchar(23),
+@vcommunication varchar(23),
+@vhike varchar(43),
+@vrating varchar(23)
+
+As
+Begin Transaction
+  Insert into Proc_Apprisal([empid], [work_performance], [communication], [hike],[rating]) values(@vempId,@vwork_performance,@vcommunication,@vhike,@vrating)
+Commit Transaction
+
+Exec Proc_Apprisal_insert '111', 'Good', 'Bad', '2' , '5'
+Exec Proc_apprisal 118, 'Bad' , 'Average', '3' , '4'
+
+select * from apprisal
